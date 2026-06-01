@@ -6,170 +6,1873 @@
   <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
   <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet">
   <meta name="referrer" content="no-referrer">
+  <meta name="theme-color" content="#111827">
 
-  <title>Plano de Guerra até 19/06</title>
+  <title>Plano Financeiro até 19/06</title>
   <style>
-    :root{
-      --bg:#f6f8fb; --card:#ffffff; --ink:#102033; --muted:#5d6b7c;
-      --blue:#1677ff; --cyan:#00a9c8; --green:#118a52; --red:#b42318; --orange:#c05621;
-      --line:#d9e2ef;
+    :root {
+      --bg: #f4f5f2;
+      --panel: #ffffff;
+      --panel-soft: #f9faf7;
+      --ink: #111827;
+      --muted: #667085;
+      --line: #d9ded4;
+      --dark: #17211b;
+      --accent: #0f766e;
+      --accent-2: #b45309;
+      --red: #b42318;
+      --yellow: #b7791f;
+      --blue: #1d4ed8;
+      --green: #047857;
+      --shadow: 0 12px 30px rgba(17, 24, 39, .08);
     }
-    *{box-sizing:border-box}
-    body{margin:0;background:linear-gradient(180deg,#eef6ff,#f7f7fb);font-family:Arial,Helvetica,sans-serif;color:var(--ink)}
-    .wrap{max-width:980px;margin:auto;padding:18px}
-    .hero{background:linear-gradient(135deg,#0c1f3a,#123f73);color:white;border-radius:24px;padding:22px;box-shadow:0 14px 35px rgba(16,32,51,.18)}
-    h1{font-size:26px;margin:0 0 8px}
-    h2{font-size:20px;margin:26px 0 12px}
-    h3{font-size:16px;margin:18px 0 8px}
-    .hero p{margin:6px 0;color:#d9eeff}
-    .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:14px}
-    .stat{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);border-radius:18px;padding:12px}
-    .stat b{display:block;font-size:20px;margin-top:4px}
-    .card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:16px;margin-top:14px;box-shadow:0 8px 20px rgba(16,32,51,.06)}
-    .rules{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
-    .pill{padding:10px;border-radius:14px;background:#edf7ff;border:1px solid #cfe7ff;font-weight:700;text-align:center}
-    table{width:100%;border-collapse:separate;border-spacing:0;margin-top:10px;overflow:hidden;border-radius:16px;border:1px solid var(--line);font-size:14px}
-    th,td{padding:10px;border-bottom:1px solid var(--line);vertical-align:top}
-    th{background:#eaf2fb;text-align:left}
-    tr:last-child td{border-bottom:none}
-    .money{white-space:nowrap;font-weight:700}
-    .ok{color:var(--green)}
-    .warn{color:var(--orange)}
-    .bad{color:var(--red)}
-    .checklist{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin:0;padding:0;list-style:none}
-    .checklist li{background:#f4f7fb;border:1px solid var(--line);border-radius:12px;padding:10px}
-    .timeline{display:grid;gap:8px}
-    .slot{display:grid;grid-template-columns:115px 1fr 125px;gap:10px;align-items:center;border:1px solid var(--line);background:#fff;border-radius:14px;padding:10px}
-    .time{font-weight:800;color:#123f73}
-    .target{font-weight:800;text-align:right}
-    .footer{font-size:13px;color:var(--muted);text-align:center;margin:22px 0}
-    @media(max-width:720px){
-      .grid{grid-template-columns:repeat(2,1fr)}
-      .rules{grid-template-columns:1fr}
-      .checklist{grid-template-columns:1fr}
-      .slot{grid-template-columns:1fr}
-      .target{text-align:left}
-      table{font-size:12px}
-      th,td{padding:8px}
-      .wrap{padding:12px}
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      margin: 0;
+      background:
+        linear-gradient(180deg, rgba(23, 33, 27, .06), rgba(244, 245, 242, 0) 280px),
+        var(--bg);
+      color: var(--ink);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 16px;
+      line-height: 1.45;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+      font: inherit;
+    }
+
+    button {
+      min-height: 48px;
+      border: 0;
+      border-radius: 8px;
+      padding: 12px 14px;
+      background: var(--dark);
+      color: #fff;
+      font-weight: 800;
+      cursor: pointer;
+      touch-action: manipulation;
+    }
+
+    button:active { transform: translateY(1px); }
+    button.secondary { background: #e8ece4; color: var(--ink); }
+    button.warning { background: #9f3412; }
+    button.danger { background: #991b1b; }
+    button.success { background: var(--green); }
+    button.ghost { background: transparent; color: var(--ink); border: 1px solid var(--line); }
+
+    label {
+      display: grid;
+      gap: 7px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      min-height: 48px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      color: var(--ink);
+      padding: 11px 12px;
+      outline: none;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(15, 118, 110, .14);
+    }
+
+    textarea {
+      min-height: 96px;
+      resize: vertical;
+    }
+
+    input[type="range"] {
+      padding: 0;
+      min-height: 36px;
+      accent-color: var(--accent);
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    h1 {
+      margin-bottom: 10px;
+      font-size: clamp(28px, 8vw, 44px);
+      line-height: 1;
+    }
+
+    h2 {
+      margin-bottom: 14px;
+      font-size: 20px;
+      line-height: 1.2;
+    }
+
+    h3 {
+      margin-bottom: 10px;
+      font-size: 16px;
+    }
+
+    .wrap {
+      width: min(1100px, 100%);
+      margin: 0 auto;
+      padding: 12px;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      min-height: 248px;
+      display: grid;
+      align-content: end;
+      border-radius: 8px;
+      padding: 18px;
+      background:
+        linear-gradient(135deg, rgba(17, 24, 39, .95), rgba(22, 53, 44, .88)),
+        radial-gradient(circle at 80% 20%, rgba(180, 83, 9, .38), transparent 36%),
+        #17211b;
+      color: #fff;
+      box-shadow: var(--shadow);
+    }
+
+    .hero p {
+      max-width: 700px;
+      margin-bottom: 0;
+      color: rgba(255, 255, 255, .82);
+    }
+
+    .hero-top {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      left: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .privacy {
+      display: inline-flex;
+      align-items: center;
+      min-height: 34px;
+      border: 1px solid rgba(255, 255, 255, .18);
+      border-radius: 8px;
+      padding: 6px 10px;
+      color: rgba(255, 255, 255, .78);
+      font-size: 12px;
+      font-weight: 800;
+      background: rgba(255, 255, 255, .08);
+    }
+
+    .hero-stats,
+    .metric-grid,
+    .form-grid,
+    .actions-grid,
+    .rules-grid,
+    .street-grid,
+    .summary-strip {
+      display: grid;
+      gap: 10px;
+    }
+
+    .hero-stats {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      margin-top: 18px;
+    }
+
+    .hero-stat {
+      border: 1px solid rgba(255, 255, 255, .16);
+      border-radius: 8px;
+      padding: 10px;
+      background: rgba(255, 255, 255, .08);
+      color: rgba(255, 255, 255, .74);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .hero-stat strong {
+      display: block;
+      margin-top: 3px;
+      color: #fff;
+      font-size: 18px;
+    }
+
+    .card,
+    details.reference-card {
+      margin-top: 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      padding: 14px;
+      box-shadow: 0 8px 20px rgba(17, 24, 39, .05);
+    }
+
+    .card.tight { padding: 12px; }
+
+    .card-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .card-header h2 {
+      margin-bottom: 4px;
+    }
+
+    .card-header p,
+    .muted {
+      color: var(--muted);
+    }
+
+    .card-header p {
+      margin-bottom: 0;
+      font-size: 14px;
+    }
+
+    .form-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .form-grid .span-2 { grid-column: span 2; }
+    .form-grid .span-4 { grid-column: 1 / -1; }
+
+    .metric-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      margin-top: 14px;
+    }
+
+    .metric {
+      min-height: 82px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 12px;
+      background: var(--panel-soft);
+    }
+
+    .metric span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .metric strong {
+      display: block;
+      margin-top: 5px;
+      font-size: 22px;
+      line-height: 1.1;
+    }
+
+    .metric small {
+      display: block;
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .progress-block {
+      margin-top: 14px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 12px;
+      background: #fff;
+    }
+
+    .progress-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 10px;
+      font-weight: 800;
+    }
+
+    .progress-track {
+      width: 100%;
+      height: 14px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: #e5e7eb;
+    }
+
+    .progress-fill {
+      width: 0;
+      height: 100%;
+      border-radius: 999px;
+      background: var(--red);
+      transition: width .22s ease, background .22s ease;
+    }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      min-height: 32px;
+      border-radius: 999px;
+      padding: 6px 10px;
+      background: #f3f4f6;
+      color: var(--ink);
+      font-size: 12px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .tone-alert .progress-fill,
+    .status-alert { background: #fee2e2; color: var(--red); }
+    .tone-progress .progress-fill,
+    .status-progress { background: #fef3c7; color: var(--yellow); }
+    .tone-close .progress-fill,
+    .status-close { background: #dbeafe; color: var(--blue); }
+    .tone-done .progress-fill,
+    .status-done { background: #d1fae5; color: var(--green); }
+    .tone-alert .progress-fill { background: var(--red); }
+    .tone-progress .progress-fill { background: #d97706; }
+    .tone-close .progress-fill { background: var(--blue); }
+    .tone-done .progress-fill { background: var(--green); }
+
+    .actions-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      margin-top: 14px;
+    }
+
+    .summary-strip {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .strip-item {
+      border-left: 4px solid var(--accent);
+      border-radius: 8px;
+      background: var(--panel-soft);
+      padding: 10px 12px;
+      min-height: 68px;
+    }
+
+    .strip-item span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .strip-item strong {
+      display: block;
+      margin-top: 3px;
+      font-size: 18px;
+    }
+
+    .table-wrap {
+      width: 100%;
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    table {
+      width: 100%;
+      min-width: 920px;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+
+    th,
+    td {
+      padding: 10px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      position: sticky;
+      top: 0;
+      z-index: 1;
+      background: #eef1ea;
+      color: #344054;
+      font-size: 12px;
+      text-transform: uppercase;
+    }
+
+    tr:last-child td { border-bottom: 0; }
+    tbody tr { cursor: pointer; }
+    tbody tr:hover { background: #fbfcf8; }
+
+    .money { white-space: nowrap; font-weight: 800; }
+    .ok { color: var(--green); }
+    .warn { color: var(--yellow); }
+    .bad { color: var(--red); }
+
+    .checklist {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .checklist label {
+      display: flex;
+      min-height: 48px;
+      align-items: center;
+      gap: 10px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel-soft);
+      padding: 10px;
+      color: var(--ink);
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .checklist input {
+      width: 20px;
+      min-height: 20px;
+      accent-color: var(--accent);
+    }
+
+    .checklist label.done {
+      color: var(--muted);
+      text-decoration: line-through;
+      background: #edf7ed;
+    }
+
+    .payments-list,
+    .timeline {
+      display: grid;
+      gap: 8px;
+    }
+
+    .payment,
+    .slot,
+    .rule-pill {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel-soft);
+      padding: 10px;
+    }
+
+    .payment {
+      display: grid;
+      grid-template-columns: 76px 1fr auto;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .payment strong,
+    .slot .time {
+      color: #164e43;
+      font-weight: 900;
+    }
+
+    .payment .amount,
+    .slot .target {
+      font-weight: 900;
+      text-align: right;
+    }
+
+    .rules-grid {
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+    }
+
+    .rule-pill {
+      min-height: 48px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      font-weight: 900;
+    }
+
+    .slot {
+      display: grid;
+      grid-template-columns: 115px 1fr 126px;
+      gap: 10px;
+      align-items: center;
+    }
+
+    details.reference-card {
+      padding: 0;
+      overflow: hidden;
+    }
+
+    details.reference-card > summary {
+      min-height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 14px;
+      cursor: pointer;
+      font-weight: 900;
+      list-style: none;
+    }
+
+    details.reference-card > summary::-webkit-details-marker { display: none; }
+    details.reference-card > summary::after {
+      content: "+";
+      display: grid;
+      place-items: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 999px;
+      background: #edf1e8;
+      font-size: 18px;
+    }
+
+    details.reference-card[open] > summary::after { content: "-"; }
+    details.reference-card .reference-body { padding: 0 14px 14px; }
+
+    .toast {
+      position: fixed;
+      right: 12px;
+      bottom: 12px;
+      z-index: 20;
+      max-width: min(360px, calc(100% - 24px));
+      border-radius: 8px;
+      padding: 12px 14px;
+      background: var(--dark);
+      color: #fff;
+      box-shadow: var(--shadow);
+      font-weight: 800;
+      opacity: 0;
+      transform: translateY(10px);
+      pointer-events: none;
+      transition: opacity .18s ease, transform .18s ease;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .footer {
+      margin: 18px 0 8px;
+      color: var(--muted);
+      font-size: 13px;
+      text-align: center;
+    }
+
+    .street-panel {
+      min-height: calc(100vh - 24px);
+      display: grid;
+      align-content: start;
+      gap: 12px;
+      margin-top: 0;
+      background: #fff;
+    }
+
+    .street-title {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .street-title h1 {
+      color: var(--ink);
+      font-size: 34px;
+      margin-bottom: 4px;
+    }
+
+    .street-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    body:not(.street-mode) .street-panel { display: none; }
+    body.street-mode .normal-mode { display: none; }
+    body.street-mode {
+      background: #fff;
+    }
+
+    @media (max-width: 860px) {
+      .hero-stats,
+      .metric-grid,
+      .actions-grid,
+      .summary-strip {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .form-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .form-grid .span-2,
+      .form-grid .span-4 {
+        grid-column: 1 / -1;
+      }
+
+      .rules-grid,
+      .checklist {
+        grid-template-columns: 1fr;
+      }
+
+      .payment,
+      .slot {
+        grid-template-columns: 1fr;
+      }
+
+      .payment .amount,
+      .slot .target {
+        text-align: left;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .wrap { padding: 10px; }
+      .hero { min-height: 230px; padding: 14px; }
+      .hero-top { position: static; margin-bottom: 42px; }
+      .hero-stats { grid-template-columns: 1fr 1fr; }
+      .hero-stat strong,
+      .metric strong {
+        font-size: 18px;
+      }
+      .metric-grid,
+      .actions-grid,
+      .summary-strip,
+      .form-grid,
+      .street-grid {
+        grid-template-columns: 1fr;
+      }
+      .card-header {
+        display: grid;
+      }
+      button {
+        width: 100%;
+      }
+      table {
+        min-width: 860px;
+        font-size: 13px;
+      }
     }
   </style>
 </head>
 <body>
   <div class="wrap">
-    <section class="hero">
-      <h1>Plano de Guerra Financeiro — até 19/06</h1>
-      <p>Objetivo: chegar na Caixa/concessionária com Kovi protegida, protestos baixados, CPF limpo e caixa positivo.</p>
-      <div class="grid">
-        <div class="stat">Saldo inicial<b>R$ 830</b></div>
-        <div class="stat">Meta ataque<b>R$ 650/dia</b></div>
-        <div class="stat">Gasolina<b>23,3%</b></div>
-        <div class="stat">Saldo projetado<b>R$ 3.822</b></div>
+    <section class="street-panel card" id="streetPanel">
+      <div class="street-title">
+        <div>
+          <h1>Modo Rua</h1>
+          <p class="muted">Controle rápido do dia, salvo no aparelho.</p>
+        </div>
+        <button class="ghost" type="button" id="streetExitBtn">Sair</button>
+      </div>
+
+      <div class="street-grid">
+        <label>Data
+          <select id="streetDateSelect"></select>
+        </label>
+        <label>Meta
+          <select id="streetMetaSelect">
+            <option value="500">R$ 500</option>
+            <option value="600">R$ 600</option>
+            <option value="650">R$ 650</option>
+          </select>
+        </label>
+        <label>Bruto feito
+          <input id="streetBrutoInput" inputmode="decimal" autocomplete="off" placeholder="0,00">
+        </label>
+        <div class="metric">
+          <span>Falta para meta</span>
+          <strong id="streetMissing">R$ 0,00</strong>
+          <small id="streetPercent">0% da meta</small>
+        </div>
+      </div>
+
+      <div class="progress-block" id="streetProgressBlock">
+        <div class="progress-head">
+          <span id="streetStatusText">Abaixo de 50%</span>
+          <span class="status-badge" id="streetStatusBadge">Alerta</span>
+        </div>
+        <div class="progress-track"><div class="progress-fill" id="streetProgressFill"></div></div>
+      </div>
+
+      <div class="summary-strip">
+        <div class="strip-item">
+          <span>Meta</span>
+          <strong id="streetMetaValue">R$ 650,00</strong>
+        </div>
+        <div class="strip-item">
+          <span>Bruto feito</span>
+          <strong id="streetBrutoValue">R$ 0,00</strong>
+        </div>
+        <div class="strip-item">
+          <span>Saldo atual</span>
+          <strong id="streetBalance">Informe saldo</strong>
+        </div>
+      </div>
+
+      <div class="card tight" style="box-shadow:none;margin-top:0">
+        <span class="muted" style="font-size:12px;font-weight:900">Próximo pagamento importante</span>
+        <h2 id="streetNextPayment" style="margin:5px 0 0">-</h2>
+      </div>
+
+      <div class="actions-grid">
+        <button class="success" type="button" id="streetSaveBtn">Salvar dia</button>
+        <button class="secondary" type="button" id="streetCopyDayBtn">Copiar resumo</button>
       </div>
     </section>
 
+    <div class="normal-mode">
+      <section class="hero">
+        <div class="hero-top">
+          <span class="privacy">Privado temporário</span>
+          <button class="secondary" type="button" id="streetModeBtn">Modo Rua</button>
+        </div>
+        <div>
+          <h1>Plano Financeiro até 19/06</h1>
+          <p>Painel diário para registrar bruto, gasolina, saldo, contas pagas e avanço real até o dia 19/06. Tudo fica salvo no localStorage deste navegador.</p>
+          <div class="hero-stats">
+            <div class="hero-stat">Saldo inicial de referência<strong>R$ 830</strong></div>
+            <div class="hero-stat">Meta ataque<strong>R$ 650/dia</strong></div>
+            <div class="hero-stat">Gasolina estimada<strong>23,3%</strong></div>
+            <div class="hero-stat">Plano projetado<strong>R$ 3.822</strong></div>
+          </div>
+        </div>
+      </section>
 
-    <section class="card" style="border-color:#f2c94c;background:#fffaf0">
-      <h2>🔒 Uso privado temporário</h2>
-      <p>Esta página é apenas um painel pessoal até 19/06. Não compartilhar o link. Depois do dia 19, arquivar ou remover do GitHub Pages.</p>
-    </section>
+      <section class="card" id="dayControl">
+        <div class="card-header">
+          <div>
+            <h2>Controle do Dia</h2>
+            <p>Escolha a data, registre o que aconteceu e salve. Ao voltar para a data, os dados reaparecem.</p>
+          </div>
+          <span class="status-badge" id="storageStatus">Salvo localmente</span>
+        </div>
 
-    <section class="card">
-      <h2>Regras fixas</h2>
-      <div class="rules">
-        <div class="pill">1. Gasolina</div>
-        <div class="pill">2. Kovi</div>
-        <div class="pill">3. CPF/protestos</div>
-        <div class="pill">4. Contas obrigatórias</div>
-        <div class="pill">5. Nada fora do plano</div>
-      </div>
-    </section>
+        <div class="form-grid">
+          <label>Data
+            <select id="dateSelect"></select>
+          </label>
+          <label>Meta do dia
+            <select id="metaSelect">
+              <option value="500">R$ 500</option>
+              <option value="600">R$ 600</option>
+              <option value="650">R$ 650</option>
+            </select>
+          </label>
+          <label>Status do dia
+            <select id="statusSelect">
+              <option value="aberto">Aberto</option>
+              <option value="concluido">Concluído</option>
+              <option value="pendente">Pendente</option>
+            </select>
+          </label>
+          <label>Cansaço <span id="fatigueValue">0</span>/10
+            <input type="range" id="fatigueInput" min="0" max="10" step="1" value="0">
+          </label>
+          <label>Bruto feito
+            <input id="grossInput" inputmode="decimal" autocomplete="off" placeholder="0,00">
+          </label>
+          <label>Gasolina real gasta
+            <input id="gasRealInput" inputmode="decimal" autocomplete="off" placeholder="0,00">
+          </label>
+          <label>Saldo inicial do dia
+            <input id="startBalanceInput" inputmode="decimal" autocomplete="off" placeholder="0,00">
+          </label>
+          <label>Saldo final do dia
+            <input id="endBalanceInput" inputmode="decimal" autocomplete="off" placeholder="0,00">
+          </label>
+          <label class="span-2">Conta paga no dia
+            <input id="paidBillInput" autocomplete="off" placeholder="Ex.: Kovi, telefone, água">
+          </label>
+          <label class="span-2">Observação do dia
+            <textarea id="noteInput" placeholder="Anote bloqueios, horários bons, manutenção, decisões e ajustes."></textarea>
+          </label>
+        </div>
 
-    <section class="card">
-      <h2>Cenários de meta</h2>
-      <table>
-        <thead><tr><th>Cenário</th><th>Bruto</th><th>Gasolina</th><th>Livre</th><th>Leitura</th></tr></thead>
-        <tbody>
-          <tr><td>Piso</td><td class="money">R$ 500</td><td>R$ 116,50</td><td class="money">R$ 383,50</td><td>Salva o dia, mas deixa vulnerável.</td></tr>
-          <tr><td>Meta saudável</td><td class="money">R$ 600</td><td>R$ 139,80</td><td class="money">R$ 460,20</td><td>Fecha sem estourar.</td></tr>
-          <tr><td>Ataque</td><td class="money">R$ 650</td><td>R$ 151,45</td><td class="money">R$ 498,55</td><td>Melhor cenário para chegar forte no dia 19.</td></tr>
-        </tbody>
-      </table>
-    </section>
+        <div class="metric-grid">
+          <div class="metric">
+            <span>Meta do dia</span>
+            <strong id="metricMeta">R$ 650,00</strong>
+          </div>
+          <div class="metric">
+            <span>Bruto feito</span>
+            <strong id="metricGross">R$ 0,00</strong>
+          </div>
+          <div class="metric">
+            <span>Falta para bater meta</span>
+            <strong id="metricMissing">R$ 650,00</strong>
+          </div>
+          <div class="metric">
+            <span>Porcentagem da meta</span>
+            <strong id="metricPercent">0%</strong>
+          </div>
+          <div class="metric">
+            <span>Gasolina estimada</span>
+            <strong id="metricGasEstimated">R$ 0,00</strong>
+            <small>23,3% do bruto</small>
+          </div>
+          <div class="metric">
+            <span>Livre estimado</span>
+            <strong id="metricFreeEstimated">R$ 0,00</strong>
+            <small>76,7% do bruto</small>
+          </div>
+          <div class="metric">
+            <span>Diferença gasolina</span>
+            <strong id="metricGasDiff">-</strong>
+            <small>Real menos estimada</small>
+          </div>
+          <div class="metric">
+            <span>Saldo atual</span>
+            <strong id="metricBalance">Informe saldo</strong>
+            <small>Informado ou calculado</small>
+          </div>
+        </div>
 
-    <section class="card">
-      <h2>Tabela principal — cenário R$ 650/dia</h2>
-      <table>
-        <thead><tr><th>Data</th><th>Meta</th><th>Livre</th><th>Saída</th><th>Saldo projetado</th></tr></thead>
-        <tbody>
-          <tr><td>01/06</td><td>R$ 650</td><td>R$ 498,55</td><td>Kovi atrasada R$ 903</td><td class="money">R$ 425,55</td></tr>
-          <tr><td>02/06</td><td>R$ 650</td><td>R$ 498,55</td><td>—</td><td class="money">R$ 924,10</td></tr>
-          <tr><td>03/06</td><td>R$ 650</td><td>R$ 498,55</td><td>Inglês R$ 709</td><td class="money">R$ 713,65</td></tr>
-          <tr><td>04/06</td><td>R$ 650</td><td>R$ 498,55</td><td>—</td><td class="money">R$ 1.212,20</td></tr>
-          <tr><td>05/06</td><td>R$ 650</td><td>R$ 498,55</td><td>Kovi R$ 903 + telefone R$ 429,09</td><td class="money">R$ 378,66</td></tr>
-          <tr><td>06/06</td><td>R$ 650</td><td>R$ 498,55</td><td>—</td><td class="money">R$ 877,21</td></tr>
-          <tr><td>07/06</td><td>R$ 650</td><td>R$ 498,55</td><td>—</td><td class="money">R$ 1.375,76</td></tr>
-          <tr><td>08/06</td><td>R$ 650</td><td>R$ 498,55</td><td>—</td><td class="money">R$ 1.874,31</td></tr>
-          <tr><td>09/06</td><td>R$ 650</td><td>R$ 498,55</td><td>—</td><td class="money">R$ 2.372,86</td></tr>
-          <tr><td>10/06</td><td>R$ 650</td><td>R$ 498,55</td><td>Pensão R$ 410</td><td class="money">R$ 2.461,41</td></tr>
-          <tr><td>11/06</td><td>R$ 650</td><td>R$ 498,55</td><td>—</td><td class="money">R$ 2.959,96</td></tr>
-          <tr><td>12/06</td><td>R$ 650</td><td>R$ 498,55</td><td>Kovi R$ 903 + manutenção de manhã</td><td class="money">R$ 2.555,51</td></tr>
-          <tr><td>13/06</td><td>R$ 650</td><td>R$ 498,55</td><td>—</td><td class="money">R$ 3.054,06</td></tr>
-          <tr><td>14/06</td><td>R$ 650</td><td>R$ 498,55</td><td>—</td><td class="money">R$ 3.552,61</td></tr>
-          <tr><td>15/06</td><td>R$ 650</td><td>R$ 498,55</td><td>Água R$ 570,05 + Empréstimo Uber R$ 750</td><td class="money">R$ 2.731,11</td></tr>
-          <tr><td>16/06</td><td>R$ 650</td><td>R$ 498,55</td><td>—</td><td class="money">R$ 3.229,66</td></tr>
-          <tr><td>17/06</td><td>R$ 650</td><td>R$ 498,55</td><td>—</td><td class="money">R$ 3.728,21</td></tr>
-          <tr><td>18/06</td><td>R$ 650</td><td>R$ 498,55</td><td>—</td><td class="money">R$ 4.226,76</td></tr>
-          <tr><td>19/06</td><td>R$ 650</td><td>R$ 498,55</td><td>Kovi R$ 903</td><td class="money ok">R$ 3.822,31</td></tr>
-        </tbody>
-      </table>
-    </section>
+        <div class="progress-block" id="progressBlock">
+          <div class="progress-head">
+            <span id="progressText">Abaixo de 50%</span>
+            <span class="status-badge" id="progressBadge">Alerta</span>
+          </div>
+          <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+        </div>
 
-    <section class="card">
-      <h2>Dia trabalhado — começando 04:30</h2>
-      <div class="timeline">
-        <div class="slot"><div class="time">04:30–07:00</div><div>Primeiro bloco. Não escolher demais. Girar com inteligência.</div><div class="target">R$ 90–140</div></div>
-        <div class="slot"><div class="time">07:00–07:40</div><div>Pausa fixa: água, banheiro, lanche, combustível.</div><div class="target">Pausa</div></div>
-        <div class="slot"><div class="time">07:40–10:30</div><div>Manhã útil. Bloco que precisa carregar o dia.</div><div class="target">+R$ 120–180</div></div>
-        <div class="slot"><div class="time">10:30–12:00</div><div>Manutenção do caixa. Evitar ficar parado.</div><div class="target">+R$ 60–100</div></div>
-        <div class="slot"><div class="time">12:00–13:30</div><div>Almoço e descanso real.</div><div class="target">Pausa</div></div>
-        <div class="slot"><div class="time">13:30–16:45</div><div>Tarde produtiva para chegar vivo no pico.</div><div class="target">+R$ 100–150</div></div>
-        <div class="slot"><div class="time">17:00–17:15</div><div>Pausa curta obrigatória.</div><div class="target">Pausa</div></div>
-        <div class="slot"><div class="time">17:15–20:00</div><div>Pico da volta. Decide o dia.</div><div class="target">+R$ 120–180</div></div>
-        <div class="slot"><div class="time">20:00–21:30</div><div>Extra só se precisar e estiver seguro.</div><div class="target">Fechar meta</div></div>
-      </div>
-    </section>
+        <div class="actions-grid">
+          <button class="success" type="button" id="saveDayBtn">Salvar dia</button>
+          <button type="button" id="completeDayBtn">Marcar dia como concluído</button>
+          <button class="secondary" type="button" id="copyDayBtn">Copiar resumo do dia</button>
+          <button class="secondary" type="button" id="copyGeneralBtn">Copiar resumo geral</button>
+          <button class="secondary" type="button" id="exportBtn">Exportar backup JSON</button>
+          <button class="secondary" type="button" id="importBtn">Importar backup JSON</button>
+          <button class="warning" type="button" id="clearDayBtn">Limpar somente dia atual</button>
+          <button class="danger" type="button" id="resetAllBtn">Resetar tudo</button>
+        </div>
+        <input id="backupInput" type="file" accept="application/json,.json" hidden>
+      </section>
 
-    <section class="card">
-      <h2>Cortes do dia</h2>
-      <table>
-        <thead><tr><th>Horário</th><th>Meta de controle</th><th>Decisão</th></tr></thead>
-        <tbody>
-          <tr><td>07:00</td><td>R$ 100+</td><td>Começo aceitável.</td></tr>
-          <tr><td>10:30</td><td>R$ 250+</td><td>Dia ainda controlado.</td></tr>
-          <tr><td>12:00</td><td>R$ 300–360</td><td>Menos de R$ 250 = alerta.</td></tr>
-          <tr><td>16:45</td><td>R$ 500+</td><td>Preparar pico final.</td></tr>
-          <tr><td>20:00</td><td>R$ 500 / 600 / 650</td><td>Encerrar ou fazer extra.</td></tr>
-        </tbody>
-      </table>
-    </section>
+      <section class="card">
+        <div class="card-header">
+          <div>
+            <h2>Acumulado Real até 19/06</h2>
+            <p>A tabela usa os dados salvos por data. Toque em uma linha para abrir aquele dia no controle.</p>
+          </div>
+        </div>
+        <div class="summary-strip" id="generalSummary">
+          <div class="strip-item"><span>Bruto total feito</span><strong id="sumGross">R$ 0,00</strong></div>
+          <div class="strip-item"><span>Gasolina total</span><strong id="sumGas">R$ 0,00</strong></div>
+          <div class="strip-item"><span>Livre total</span><strong id="sumFree">R$ 0,00</strong></div>
+        </div>
+        <div class="table-wrap" style="margin-top:12px">
+          <table aria-label="Tabela acumulada real">
+            <thead>
+              <tr>
+                <th>Data</th>
+                <th>Meta</th>
+                <th>Bruto feito real</th>
+                <th>Gasolina real ou estimada</th>
+                <th>Livre real/estimado</th>
+                <th>Saídas previstas</th>
+                <th>Conta paga</th>
+                <th>Saldo final informado ou calculado</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="accumulatedBody"></tbody>
+          </table>
+        </div>
+      </section>
 
-    <section class="card">
-      <h2>Documentos para o dia 19</h2>
-      <ul class="checklist">
-        <li>CNH</li><li>CPF/RG</li><li>Comprovante de residência</li><li>Extratos bancários 3 meses</li>
-        <li>Resumo Uber jan–mai</li><li>Resumo 99 jan–mai</li><li>Comprovantes dos protestos</li><li>Comprovante do cartório</li>
-        <li>Print CENPROT</li><li>Print Serasa atualizado</li><li>Registrato/SCR</li><li>Comprovante Kovi</li>
-      </ul>
-    </section>
+      <section class="card">
+        <div class="card-header">
+          <div>
+            <h2>Checklist Salvo</h2>
+            <p>Marcou, ficou salvo neste navegador.</p>
+          </div>
+          <span class="status-badge" id="checklistCount">14 pendentes</span>
+        </div>
+        <ul class="checklist" id="checklist"></ul>
+      </section>
 
-    <section class="card">
-      <h2>Mensagem diária para acompanhamento</h2>
-      <p><b>Copiar e enviar:</b></p>
-      <p>Data:<br>Bruto feito:<br>Gasolina gasta:<br>Saldo atual:<br>Conta paga hoje:<br>Cansaço 0 a 10:</p>
-    </section>
+      <section class="card">
+        <h2>Próximos Pagamentos</h2>
+        <div class="payments-list" id="paymentsList"></div>
+      </section>
 
-    <div class="footer">Plano temporário CORE-D Financeiro — usar até 19/06 e depois voltar ao sistema normal.</div>
+      <section class="card">
+        <h2>Uso privado temporário</h2>
+        <p class="muted">Esta página é apenas um painel pessoal até 19/06. Não compartilhar o link. Depois do dia 19, arquivar ou remover do GitHub Pages.</p>
+      </section>
+
+      <details class="reference-card">
+        <summary>Regras fixas</summary>
+        <div class="reference-body">
+          <div class="rules-grid">
+            <div class="rule-pill">1. Gasolina</div>
+            <div class="rule-pill">2. Kovi</div>
+            <div class="rule-pill">3. CPF/protestos</div>
+            <div class="rule-pill">4. Contas obrigatórias</div>
+            <div class="rule-pill">5. Nada fora do plano</div>
+          </div>
+        </div>
+      </details>
+
+      <details class="reference-card">
+        <summary>Cenários de meta</summary>
+        <div class="reference-body">
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Cenário</th><th>Bruto</th><th>Gasolina</th><th>Livre</th><th>Leitura</th></tr></thead>
+              <tbody>
+                <tr><td>Piso</td><td class="money">R$ 500</td><td>R$ 116,50</td><td class="money">R$ 383,50</td><td>Salva o dia, mas deixa vulnerável.</td></tr>
+                <tr><td>Meta saudável</td><td class="money">R$ 600</td><td>R$ 139,80</td><td class="money">R$ 460,20</td><td>Fecha sem estourar.</td></tr>
+                <tr><td>Ataque</td><td class="money">R$ 650</td><td>R$ 151,45</td><td class="money">R$ 498,55</td><td>Melhor cenário para chegar forte no dia 19.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </details>
+
+      <details class="reference-card">
+        <summary>Plano projetado original — cenário R$ 650/dia</summary>
+        <div class="reference-body">
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Data</th><th>Meta</th><th>Livre</th><th>Saída</th><th>Saldo projetado</th></tr></thead>
+              <tbody>
+                <tr><td>01/06</td><td>R$ 650</td><td>R$ 498,55</td><td>Kovi atrasada R$ 903</td><td class="money">R$ 425,55</td></tr>
+                <tr><td>02/06</td><td>R$ 650</td><td>R$ 498,55</td><td>-</td><td class="money">R$ 924,10</td></tr>
+                <tr><td>03/06</td><td>R$ 650</td><td>R$ 498,55</td><td>Inglês R$ 709</td><td class="money">R$ 713,65</td></tr>
+                <tr><td>04/06</td><td>R$ 650</td><td>R$ 498,55</td><td>-</td><td class="money">R$ 1.212,20</td></tr>
+                <tr><td>05/06</td><td>R$ 650</td><td>R$ 498,55</td><td>Kovi R$ 903 + telefone R$ 429,09</td><td class="money">R$ 378,66</td></tr>
+                <tr><td>06/06</td><td>R$ 650</td><td>R$ 498,55</td><td>-</td><td class="money">R$ 877,21</td></tr>
+                <tr><td>07/06</td><td>R$ 650</td><td>R$ 498,55</td><td>-</td><td class="money">R$ 1.375,76</td></tr>
+                <tr><td>08/06</td><td>R$ 650</td><td>R$ 498,55</td><td>-</td><td class="money">R$ 1.874,31</td></tr>
+                <tr><td>09/06</td><td>R$ 650</td><td>R$ 498,55</td><td>-</td><td class="money">R$ 2.372,86</td></tr>
+                <tr><td>10/06</td><td>R$ 650</td><td>R$ 498,55</td><td>Pensão R$ 410</td><td class="money">R$ 2.461,41</td></tr>
+                <tr><td>11/06</td><td>R$ 650</td><td>R$ 498,55</td><td>-</td><td class="money">R$ 2.959,96</td></tr>
+                <tr><td>12/06</td><td>R$ 650</td><td>R$ 498,55</td><td>Kovi R$ 903 + manutenção de manhã</td><td class="money">R$ 2.555,51</td></tr>
+                <tr><td>13/06</td><td>R$ 650</td><td>R$ 498,55</td><td>-</td><td class="money">R$ 3.054,06</td></tr>
+                <tr><td>14/06</td><td>R$ 650</td><td>R$ 498,55</td><td>-</td><td class="money">R$ 3.552,61</td></tr>
+                <tr><td>15/06</td><td>R$ 650</td><td>R$ 498,55</td><td>Água R$ 570,05 + Empréstimo Uber R$ 750</td><td class="money">R$ 2.731,11</td></tr>
+                <tr><td>16/06</td><td>R$ 650</td><td>R$ 498,55</td><td>-</td><td class="money">R$ 3.229,66</td></tr>
+                <tr><td>17/06</td><td>R$ 650</td><td>R$ 498,55</td><td>-</td><td class="money">R$ 3.728,21</td></tr>
+                <tr><td>18/06</td><td>R$ 650</td><td>R$ 498,55</td><td>-</td><td class="money">R$ 4.226,76</td></tr>
+                <tr><td>19/06</td><td>R$ 650</td><td>R$ 498,55</td><td>Kovi R$ 903</td><td class="money ok">R$ 3.822,31</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </details>
+
+      <details class="reference-card">
+        <summary>Dia trabalhado — começando 04:30</summary>
+        <div class="reference-body">
+          <div class="timeline">
+            <div class="slot"><div class="time">04:30-07:00</div><div>Primeiro bloco. Não escolher demais. Girar com inteligência.</div><div class="target">R$ 90-140</div></div>
+            <div class="slot"><div class="time">07:00-07:40</div><div>Pausa fixa: água, banheiro, lanche, combustível.</div><div class="target">Pausa</div></div>
+            <div class="slot"><div class="time">07:40-10:30</div><div>Manhã útil. Bloco que precisa carregar o dia.</div><div class="target">+R$ 120-180</div></div>
+            <div class="slot"><div class="time">10:30-12:00</div><div>Manutenção do caixa. Evitar ficar parado.</div><div class="target">+R$ 60-100</div></div>
+            <div class="slot"><div class="time">12:00-13:30</div><div>Almoço e descanso real.</div><div class="target">Pausa</div></div>
+            <div class="slot"><div class="time">13:30-16:45</div><div>Tarde produtiva para chegar vivo no pico.</div><div class="target">+R$ 100-150</div></div>
+            <div class="slot"><div class="time">17:00-17:15</div><div>Pausa curta obrigatória.</div><div class="target">Pausa</div></div>
+            <div class="slot"><div class="time">17:15-20:00</div><div>Pico da volta. Decide o dia.</div><div class="target">+R$ 120-180</div></div>
+            <div class="slot"><div class="time">20:00-21:30</div><div>Extra só se precisar e estiver seguro.</div><div class="target">Fechar meta</div></div>
+          </div>
+        </div>
+      </details>
+
+      <details class="reference-card">
+        <summary>Cortes do dia</summary>
+        <div class="reference-body">
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Horário</th><th>Meta de controle</th><th>Decisão</th></tr></thead>
+              <tbody>
+                <tr><td>07:00</td><td>R$ 100+</td><td>Começo aceitável.</td></tr>
+                <tr><td>10:30</td><td>R$ 250+</td><td>Dia ainda controlado.</td></tr>
+                <tr><td>12:00</td><td>R$ 300-360</td><td>Menos de R$ 250 = alerta.</td></tr>
+                <tr><td>16:45</td><td>R$ 500+</td><td>Preparar pico final.</td></tr>
+                <tr><td>20:00</td><td>R$ 500 / 600 / 650</td><td>Encerrar ou fazer extra.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </details>
+
+      <details class="reference-card">
+        <summary>Documentos para o dia 19</summary>
+        <div class="reference-body">
+          <ul class="checklist" aria-label="Documentos de referência">
+            <li><label>CNH</label></li>
+            <li><label>CPF/RG</label></li>
+            <li><label>Comprovante de residência</label></li>
+            <li><label>Extratos bancários 3 meses</label></li>
+            <li><label>Resumo Uber jan-mai</label></li>
+            <li><label>Resumo 99 jan-mai</label></li>
+            <li><label>Comprovantes dos protestos</label></li>
+            <li><label>Comprovante do cartório</label></li>
+            <li><label>Print CENPROT</label></li>
+            <li><label>Print Serasa atualizado</label></li>
+            <li><label>Registrato/SCR</label></li>
+            <li><label>Comprovante Kovi</label></li>
+          </ul>
+        </div>
+      </details>
+
+      <div class="footer">Plano temporário CORE-D Financeiro — usar até 19/06 e depois voltar ao sistema normal.</div>
+    </div>
   </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    (function () {
+      "use strict";
+
+      var STORAGE_KEY = "planoFinanceiro1906.local.v1";
+      var GAS_RATE = 0.233;
+      var FREE_RATE = 0.767;
+
+      var DAYS = Array.from({ length: 19 }, function (_, index) {
+        var day = String(index + 1).padStart(2, "0");
+        return {
+          key: "2026-06-" + day,
+          label: day + "/06"
+        };
+      });
+
+      var PAYMENTS = {
+        "2026-06-01": { text: "Kovi atrasada R$ 903", amount: 903 },
+        "2026-06-03": { text: "Inglês R$ 709", amount: 709 },
+        "2026-06-05": { text: "Kovi R$ 903 + telefone R$ 429,09", amount: 1332.09 },
+        "2026-06-10": { text: "Pensão R$ 410", amount: 410 },
+        "2026-06-12": { text: "Kovi R$ 903 + manutenção de manhã", amount: 903 },
+        "2026-06-15": { text: "Água R$ 570,05 + Empréstimo Uber R$ 750", amount: 1320.05 },
+        "2026-06-19": { text: "Kovi R$ 903", amount: 903 }
+      };
+
+      var CHECKLIST_ITEMS = [
+        "Pagar Kovi atrasada",
+        "Pagar inglês",
+        "Baixar protestos no cartório",
+        "Pagar telefone",
+        "Pagar pensão",
+        "Fazer manutenção Kovi",
+        "Pagar água",
+        "Pagar empréstimo Uber",
+        "Pagar Kovi 12/06",
+        "Pagar Kovi 19/06",
+        "Reconsultar CENPROT",
+        "Reconsultar Serasa",
+        "Consultar Registrato/SCR",
+        "Separar documentos Caixa"
+      ];
+
+      var state = loadState();
+      var currentDayKey = state.selectedDay || DAYS[0].key;
+      var isLoading = false;
+      var saveTimer = null;
+      var toastTimer = null;
+
+      var el = {
+        dateSelect: document.getElementById("dateSelect"),
+        metaSelect: document.getElementById("metaSelect"),
+        statusSelect: document.getElementById("statusSelect"),
+        fatigueInput: document.getElementById("fatigueInput"),
+        fatigueValue: document.getElementById("fatigueValue"),
+        grossInput: document.getElementById("grossInput"),
+        gasRealInput: document.getElementById("gasRealInput"),
+        startBalanceInput: document.getElementById("startBalanceInput"),
+        endBalanceInput: document.getElementById("endBalanceInput"),
+        paidBillInput: document.getElementById("paidBillInput"),
+        noteInput: document.getElementById("noteInput"),
+        storageStatus: document.getElementById("storageStatus"),
+        metricMeta: document.getElementById("metricMeta"),
+        metricGross: document.getElementById("metricGross"),
+        metricMissing: document.getElementById("metricMissing"),
+        metricPercent: document.getElementById("metricPercent"),
+        metricGasEstimated: document.getElementById("metricGasEstimated"),
+        metricFreeEstimated: document.getElementById("metricFreeEstimated"),
+        metricGasDiff: document.getElementById("metricGasDiff"),
+        metricBalance: document.getElementById("metricBalance"),
+        progressBlock: document.getElementById("progressBlock"),
+        progressText: document.getElementById("progressText"),
+        progressBadge: document.getElementById("progressBadge"),
+        progressFill: document.getElementById("progressFill"),
+        saveDayBtn: document.getElementById("saveDayBtn"),
+        completeDayBtn: document.getElementById("completeDayBtn"),
+        copyDayBtn: document.getElementById("copyDayBtn"),
+        copyGeneralBtn: document.getElementById("copyGeneralBtn"),
+        exportBtn: document.getElementById("exportBtn"),
+        importBtn: document.getElementById("importBtn"),
+        backupInput: document.getElementById("backupInput"),
+        clearDayBtn: document.getElementById("clearDayBtn"),
+        resetAllBtn: document.getElementById("resetAllBtn"),
+        accumulatedBody: document.getElementById("accumulatedBody"),
+        sumGross: document.getElementById("sumGross"),
+        sumGas: document.getElementById("sumGas"),
+        sumFree: document.getElementById("sumFree"),
+        checklist: document.getElementById("checklist"),
+        checklistCount: document.getElementById("checklistCount"),
+        paymentsList: document.getElementById("paymentsList"),
+        streetModeBtn: document.getElementById("streetModeBtn"),
+        streetExitBtn: document.getElementById("streetExitBtn"),
+        streetDateSelect: document.getElementById("streetDateSelect"),
+        streetMetaSelect: document.getElementById("streetMetaSelect"),
+        streetBrutoInput: document.getElementById("streetBrutoInput"),
+        streetMissing: document.getElementById("streetMissing"),
+        streetPercent: document.getElementById("streetPercent"),
+        streetProgressBlock: document.getElementById("streetProgressBlock"),
+        streetProgressFill: document.getElementById("streetProgressFill"),
+        streetStatusText: document.getElementById("streetStatusText"),
+        streetStatusBadge: document.getElementById("streetStatusBadge"),
+        streetMetaValue: document.getElementById("streetMetaValue"),
+        streetBrutoValue: document.getElementById("streetBrutoValue"),
+        streetBalance: document.getElementById("streetBalance"),
+        streetNextPayment: document.getElementById("streetNextPayment"),
+        streetSaveBtn: document.getElementById("streetSaveBtn"),
+        streetCopyDayBtn: document.getElementById("streetCopyDayBtn"),
+        toast: document.getElementById("toast")
+      };
+
+      init();
+
+      function init() {
+        fillDateSelect(el.dateSelect);
+        fillDateSelect(el.streetDateSelect);
+        renderChecklist();
+        renderPayments();
+        attachEvents();
+        loadDay(currentDayKey);
+        renderAll();
+      }
+
+      function fillDateSelect(select) {
+        select.innerHTML = DAYS.map(function (day) {
+          return "<option value=\"" + day.key + "\">" + day.label + "</option>";
+        }).join("");
+      }
+
+      function attachEvents() {
+        el.dateSelect.addEventListener("change", function () {
+          saveDay(true);
+          selectDay(el.dateSelect.value);
+        });
+
+        el.streetDateSelect.addEventListener("change", function () {
+          saveDay(true);
+          selectDay(el.streetDateSelect.value);
+        });
+
+        el.streetMetaSelect.addEventListener("change", function () {
+          el.metaSelect.value = el.streetMetaSelect.value;
+          renderCalculations();
+          scheduleAutoSave();
+        });
+
+        el.streetBrutoInput.addEventListener("input", function () {
+          el.grossInput.value = el.streetBrutoInput.value;
+          renderCalculations();
+          scheduleAutoSave();
+        });
+
+        [
+          el.metaSelect,
+          el.statusSelect,
+          el.fatigueInput,
+          el.grossInput,
+          el.gasRealInput,
+          el.startBalanceInput,
+          el.endBalanceInput,
+          el.paidBillInput,
+          el.noteInput
+        ].forEach(function (field) {
+          field.addEventListener("input", function () {
+            if (field === el.fatigueInput) {
+              el.fatigueValue.textContent = el.fatigueInput.value;
+            }
+            renderCalculations();
+            scheduleAutoSave();
+          });
+          field.addEventListener("change", function () {
+            if (field === el.fatigueInput) {
+              el.fatigueValue.textContent = el.fatigueInput.value;
+            }
+            renderCalculations();
+            scheduleAutoSave();
+          });
+        });
+
+        el.saveDayBtn.addEventListener("click", function () { saveDay(false); });
+        el.streetSaveBtn.addEventListener("click", function () { saveDay(false); });
+
+        el.completeDayBtn.addEventListener("click", function () {
+          el.statusSelect.value = "concluido";
+          saveDay(false);
+          showToast("Dia marcado como concluído.");
+        });
+
+        el.copyDayBtn.addEventListener("click", copyDaySummary);
+        el.streetCopyDayBtn.addEventListener("click", copyDaySummary);
+        el.copyGeneralBtn.addEventListener("click", copyGeneralSummary);
+        el.exportBtn.addEventListener("click", exportBackup);
+        el.importBtn.addEventListener("click", function () { el.backupInput.click(); });
+        el.backupInput.addEventListener("change", importBackup);
+        el.clearDayBtn.addEventListener("click", clearCurrentDay);
+        el.resetAllBtn.addEventListener("click", resetAll);
+        el.streetModeBtn.addEventListener("click", enterStreetMode);
+        el.streetExitBtn.addEventListener("click", exitStreetMode);
+
+        el.accumulatedBody.addEventListener("click", function (event) {
+          var row = event.target.closest("tr[data-day]");
+          if (!row) return;
+          saveDay(true);
+          selectDay(row.getAttribute("data-day"));
+          document.getElementById("dayControl").scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+
+        el.checklist.addEventListener("change", function (event) {
+          var input = event.target;
+          if (!input.matches("input[type='checkbox']")) return;
+          var item = CHECKLIST_ITEMS[Number(input.getAttribute("data-index"))];
+          state.checklist[item] = input.checked;
+          persist();
+          input.closest("label").classList.toggle("done", input.checked);
+          renderChecklistCount();
+        });
+      }
+
+      function defaultState() {
+        var checklist = {};
+        CHECKLIST_ITEMS.forEach(function (item) {
+          checklist[item] = false;
+        });
+        return {
+          version: 1,
+          selectedDay: DAYS[0].key,
+          days: {},
+          checklist: checklist
+        };
+      }
+
+      function loadState() {
+        try {
+          var raw = localStorage.getItem(STORAGE_KEY);
+          if (!raw) return defaultState();
+          return normalizeState(JSON.parse(raw));
+        } catch (error) {
+          return defaultState();
+        }
+      }
+
+      function normalizeState(input) {
+        var normalized = defaultState();
+        if (input && typeof input === "object") {
+          normalized.version = 1;
+          normalized.days = input.days && typeof input.days === "object" ? input.days : {};
+          normalized.checklist = input.checklist && typeof input.checklist === "object" ? input.checklist : {};
+          normalized.selectedDay = isValidDay(input.selectedDay) ? input.selectedDay : DAYS[0].key;
+        }
+
+        CHECKLIST_ITEMS.forEach(function (item) {
+          normalized.checklist[item] = normalized.checklist[item] === true;
+        });
+
+        Object.keys(normalized.days).forEach(function (key) {
+          if (!isValidDay(key) || typeof normalized.days[key] !== "object") {
+            delete normalized.days[key];
+            return;
+          }
+          normalized.days[key] = normalizeDay(normalized.days[key]);
+        });
+
+        return normalized;
+      }
+
+      function normalizeDay(day) {
+        return {
+          meta: toNumber(day.meta) || 650,
+          bruto: nullableNumber(day.bruto),
+          gasolinaReal: nullableNumber(day.gasolinaReal),
+          saldoInicial: nullableNumber(day.saldoInicial),
+          saldoFinal: nullableNumber(day.saldoFinal),
+          observacao: typeof day.observacao === "string" ? day.observacao : "",
+          contaPaga: typeof day.contaPaga === "string" ? day.contaPaga : "",
+          cansaco: clamp(Math.round(toNumber(day.cansaco) || 0), 0, 10),
+          status: ["aberto", "concluido", "pendente"].indexOf(day.status) >= 0 ? day.status : "aberto"
+        };
+      }
+
+      function persist() {
+        state.selectedDay = currentDayKey;
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      }
+
+      function selectDay(key) {
+        currentDayKey = isValidDay(key) ? key : DAYS[0].key;
+        state.selectedDay = currentDayKey;
+        persist();
+        loadDay(currentDayKey);
+        renderAll();
+      }
+
+      function loadDay(key) {
+        isLoading = true;
+        var day = getDay(key);
+        el.dateSelect.value = key;
+        el.streetDateSelect.value = key;
+        el.metaSelect.value = String(day.meta || 650);
+        el.statusSelect.value = day.status || "aberto";
+        el.fatigueInput.value = String(day.cansaco || 0);
+        el.fatigueValue.textContent = String(day.cansaco || 0);
+        el.grossInput.value = inputValue(day.bruto);
+        el.gasRealInput.value = inputValue(day.gasolinaReal);
+        el.startBalanceInput.value = inputValue(day.saldoInicial);
+        el.endBalanceInput.value = inputValue(day.saldoFinal);
+        el.paidBillInput.value = day.contaPaga || "";
+        el.noteInput.value = day.observacao || "";
+        syncStreetInputs();
+        isLoading = false;
+      }
+
+      function getDay(key) {
+        return normalizeDay(state.days[key] || {});
+      }
+
+      function collectDayFromForm() {
+        return normalizeDay({
+          meta: parseMoney(el.metaSelect.value) || 650,
+          bruto: parseMoney(el.grossInput.value),
+          gasolinaReal: parseMoney(el.gasRealInput.value),
+          saldoInicial: parseMoney(el.startBalanceInput.value),
+          saldoFinal: parseMoney(el.endBalanceInput.value),
+          observacao: el.noteInput.value.trim(),
+          contaPaga: el.paidBillInput.value.trim(),
+          cansaco: parseMoney(el.fatigueInput.value) || 0,
+          status: el.statusSelect.value
+        });
+      }
+
+      function saveDay(silent) {
+        if (isLoading) return;
+        clearTimeout(saveTimer);
+        state.days[currentDayKey] = collectDayFromForm();
+        persist();
+        renderAll();
+        if (!silent) showToast("Dia salvo no localStorage.");
+        setStorageStatus("Salvo localmente", "status-done");
+      }
+
+      function scheduleAutoSave() {
+        if (isLoading) return;
+        setStorageStatus("Salvando...", "status-close");
+        clearTimeout(saveTimer);
+        saveTimer = setTimeout(function () {
+          saveDay(true);
+        }, 450);
+      }
+
+      function renderAll() {
+        renderCalculations();
+        renderAccumulatedTable();
+        renderChecklistCount();
+      }
+
+      function renderCalculations() {
+        var day = collectDayFromForm();
+        var calc = calculateDay(currentDayKey, day);
+        var tone = toneForPercent(calc.percent);
+        var status = visualStatus(calc.percent);
+
+        el.metricMeta.textContent = formatCurrency(day.meta);
+        el.metricGross.textContent = formatCurrency(calc.bruto);
+        el.metricMissing.textContent = formatCurrency(calc.missing);
+        el.metricPercent.textContent = formatPercent(calc.percent);
+        el.metricGasEstimated.textContent = formatCurrency(calc.gasEstimated);
+        el.metricFreeEstimated.textContent = formatCurrency(calc.freeEstimated);
+        el.metricGasDiff.textContent = calc.gasDiff === null ? "-" : describeGasDiff(calc.gasDiff);
+        el.metricBalance.textContent = calc.balance === null ? "Informe saldo" : formatCurrency(calc.balance);
+
+        setProgress(el.progressBlock, el.progressFill, el.progressText, el.progressBadge, calc.percent, tone, status);
+        syncStreetInputs();
+        syncStreetMetrics(calc, tone, status);
+      }
+
+      function syncStreetInputs() {
+        el.streetDateSelect.value = currentDayKey;
+        el.streetMetaSelect.value = el.metaSelect.value;
+        if (document.activeElement !== el.streetBrutoInput) {
+          el.streetBrutoInput.value = el.grossInput.value;
+        }
+      }
+
+      function syncStreetMetrics(calc, tone, status) {
+        el.streetMetaValue.textContent = formatCurrency(calc.meta);
+        el.streetBrutoValue.textContent = formatCurrency(calc.bruto);
+        el.streetMissing.textContent = formatCurrency(calc.missing);
+        el.streetPercent.textContent = formatPercent(calc.percent) + " da meta";
+        el.streetBalance.textContent = calc.balance === null ? "Informe saldo" : formatCurrency(calc.balance);
+        el.streetNextPayment.textContent = nextPaymentText(currentDayKey);
+        setProgress(el.streetProgressBlock, el.streetProgressFill, el.streetStatusText, el.streetStatusBadge, calc.percent, tone, status);
+      }
+
+      function setProgress(block, fill, textEl, badgeEl, percent, tone, status) {
+        block.classList.remove("tone-alert", "tone-progress", "tone-close", "tone-done");
+        block.classList.add(tone.className);
+        fill.style.width = Math.min(Math.max(percent, 0), 100) + "%";
+        textEl.textContent = status.text;
+        badgeEl.className = "status-badge " + status.badgeClass;
+        badgeEl.textContent = status.badge;
+      }
+
+      function renderAccumulatedTable() {
+        var carryBalance = null;
+        var rows = [];
+        var totals = { gross: 0, gas: 0, free: 0 };
+
+        DAYS.forEach(function (day) {
+          var data = getDay(day.key);
+          var payment = PAYMENTS[day.key] || { text: "-", amount: 0 };
+          var brutoKnown = data.bruto !== null;
+          var bruto = brutoKnown ? data.bruto : 0;
+          var gas = data.gasolinaReal !== null ? data.gasolinaReal : (brutoKnown ? bruto * GAS_RATE : null);
+          var free = brutoKnown ? bruto - (gas || 0) : null;
+          var startBalance = data.saldoInicial !== null ? data.saldoInicial : carryBalance;
+          var balanceInfo = computeBalance(data, day.key, startBalance);
+
+          if (balanceInfo.balance !== null) {
+            carryBalance = balanceInfo.balance;
+          }
+
+          if (brutoKnown) {
+            totals.gross += bruto;
+            totals.gas += gas || 0;
+            totals.free += free || 0;
+          }
+
+          rows.push({
+            key: day.key,
+            label: day.label,
+            meta: data.meta,
+            bruto: brutoKnown ? formatCurrency(bruto) : "-",
+            gas: gas === null ? "-" : formatCurrency(gas) + (data.gasolinaReal !== null ? " real" : " est."),
+            free: free === null ? "-" : formatCurrency(free) + (data.gasolinaReal !== null ? " real" : " est."),
+            payment: payment.text,
+            paid: data.contaPaga || "-",
+            balance: balanceInfo.balance === null ? "-" : formatCurrency(balanceInfo.balance) + " " + balanceInfo.label,
+            status: statusLabel(data.status),
+            statusClass: statusClass(data.status)
+          });
+        });
+
+        el.accumulatedBody.innerHTML = rows.map(function (row) {
+          return "<tr data-day=\"" + row.key + "\">" +
+            "<td><strong>" + row.label + "</strong></td>" +
+            "<td class=\"money\">" + formatCurrency(row.meta) + "</td>" +
+            "<td class=\"money\">" + row.bruto + "</td>" +
+            "<td>" + row.gas + "</td>" +
+            "<td>" + row.free + "</td>" +
+            "<td>" + escapeHtml(row.payment) + "</td>" +
+            "<td>" + escapeHtml(row.paid) + "</td>" +
+            "<td class=\"money\">" + row.balance + "</td>" +
+            "<td><span class=\"status-badge " + row.statusClass + "\">" + row.status + "</span></td>" +
+          "</tr>";
+        }).join("");
+
+        el.sumGross.textContent = formatCurrency(totals.gross);
+        el.sumGas.textContent = formatCurrency(totals.gas);
+        el.sumFree.textContent = formatCurrency(totals.free);
+      }
+
+      function renderChecklist() {
+        el.checklist.innerHTML = CHECKLIST_ITEMS.map(function (item, index) {
+          var checked = state.checklist[item] === true;
+          return "<li><label class=\"" + (checked ? "done" : "") + "\">" +
+            "<input type=\"checkbox\" data-index=\"" + index + "\"" + (checked ? " checked" : "") + ">" +
+            "<span>" + escapeHtml(item) + "</span>" +
+          "</label></li>";
+        }).join("");
+
+        renderChecklistCount();
+      }
+
+      function renderChecklistCount() {
+        var pending = CHECKLIST_ITEMS.filter(function (item) {
+          return state.checklist[item] !== true;
+        });
+        el.checklistCount.textContent = pending.length === 1 ? "1 pendente" : pending.length + " pendentes";
+      }
+
+      function renderPayments() {
+        el.paymentsList.innerHTML = DAYS.filter(function (day) {
+          return PAYMENTS[day.key];
+        }).map(function (day) {
+          var payment = PAYMENTS[day.key];
+          return "<div class=\"payment\">" +
+            "<strong>" + day.label + "</strong>" +
+            "<span>" + escapeHtml(payment.text) + "</span>" +
+            "<span class=\"amount\">" + formatCurrency(payment.amount) + "</span>" +
+          "</div>";
+        }).join("");
+      }
+
+      function calculateDay(key, data) {
+        var bruto = data.bruto || 0;
+        var meta = data.meta || 650;
+        var gasEstimated = bruto * GAS_RATE;
+        var freeEstimated = bruto * FREE_RATE;
+        var gasDiff = data.gasolinaReal === null ? null : data.gasolinaReal - gasEstimated;
+        var percent = meta > 0 ? (bruto / meta) * 100 : 0;
+        var missing = Math.max(meta - bruto, 0);
+        var balanceInfo = computeBalance(data, key, data.saldoInicial);
+
+        return {
+          meta: meta,
+          bruto: bruto,
+          gasEstimated: gasEstimated,
+          freeEstimated: freeEstimated,
+          gasDiff: gasDiff,
+          percent: percent,
+          missing: missing,
+          balance: balanceInfo.balance
+        };
+      }
+
+      function computeBalance(data, key, fallbackStart) {
+        if (data.saldoFinal !== null) {
+          return { balance: data.saldoFinal, label: "(inf.)" };
+        }
+
+        var start = data.saldoInicial !== null ? data.saldoInicial : fallbackStart;
+        var hasGross = data.bruto !== null;
+        if (start === null && !hasGross) {
+          return { balance: null, label: "" };
+        }
+
+        if (start === null) {
+          return { balance: null, label: "" };
+        }
+
+        var bruto = hasGross ? data.bruto : 0;
+        var gas = data.gasolinaReal !== null ? data.gasolinaReal : bruto * GAS_RATE;
+        var free = bruto - gas;
+        var out = (PAYMENTS[key] && PAYMENTS[key].amount) || 0;
+        return { balance: start + free - out, label: "(calc.)" };
+      }
+
+      function toneForPercent(percent) {
+        if (percent >= 100) return { className: "tone-done" };
+        if (percent >= 90) return { className: "tone-close" };
+        if (percent >= 50) return { className: "tone-progress" };
+        return { className: "tone-alert" };
+      }
+
+      function visualStatus(percent) {
+        if (percent >= 100) return { text: "100% ou mais", badge: "Meta batida", badgeClass: "status-done" };
+        if (percent >= 90) return { text: "90% a 99%", badge: "Quase lá", badgeClass: "status-close" };
+        if (percent >= 50) return { text: "50% a 89%", badge: "Andamento", badgeClass: "status-progress" };
+        return { text: "Abaixo de 50%", badge: "Alerta", badgeClass: "status-alert" };
+      }
+
+      function describeGasDiff(diff) {
+        if (Math.abs(diff) < 0.005) return "Dentro do estimado";
+        if (diff > 0) return formatCurrency(diff) + " acima";
+        return formatCurrency(Math.abs(diff)) + " abaixo";
+      }
+
+      function copyDaySummary() {
+        saveDay(true);
+        var data = getDay(currentDayKey);
+        var calc = calculateDay(currentDayKey, data);
+        var text = [
+          "Data: " + dayLabel(currentDayKey),
+          "Meta: " + formatCurrency(data.meta),
+          "Bruto feito: " + optionalCurrency(data.bruto),
+          "Gasolina real: " + optionalCurrency(data.gasolinaReal),
+          "Livre estimado: " + formatCurrency(calc.freeEstimated),
+          "Saldo inicial: " + optionalCurrency(data.saldoInicial),
+          "Saldo final: " + optionalCurrency(data.saldoFinal),
+          "Conta paga: " + (data.contaPaga || "Não informado"),
+          "Status: " + statusLabel(data.status),
+          "Cansaço: " + data.cansaco + "/10",
+          "Observação: " + (data.observacao || "Sem observação")
+        ].join("\n");
+
+        copyText(text, "Resumo do dia copiado.");
+      }
+
+      function copyGeneralSummary() {
+        saveDay(true);
+        var aggregate = aggregateSummary();
+        var pendingChecklist = CHECKLIST_ITEMS.filter(function (item) {
+          return state.checklist[item] !== true;
+        });
+        var text = [
+          "Resumo geral 01/06 até 19/06",
+          "Bruto total feito: " + formatCurrency(aggregate.gross),
+          "Gasolina total: " + formatCurrency(aggregate.gas),
+          "Livre total: " + formatCurrency(aggregate.free),
+          "Saldo final mais recente: " + (aggregate.latestBalance === null ? "Não informado" : formatCurrency(aggregate.latestBalance)),
+          "Dias concluídos: " + aggregate.doneDays,
+          "Dias pendentes: " + aggregate.pendingDays,
+          "Checklist pendente: " + pendingChecklist.length + (pendingChecklist.length ? " - " + pendingChecklist.join(", ") : "")
+        ].join("\n");
+
+        copyText(text, "Resumo geral copiado.");
+      }
+
+      function aggregateSummary() {
+        var totals = { gross: 0, gas: 0, free: 0, latestBalance: null, doneDays: 0, pendingDays: 0 };
+        var carry = null;
+
+        DAYS.forEach(function (day) {
+          var data = getDay(day.key);
+          var brutoKnown = data.bruto !== null;
+          var bruto = brutoKnown ? data.bruto : 0;
+          var gas = data.gasolinaReal !== null ? data.gasolinaReal : (brutoKnown ? bruto * GAS_RATE : 0);
+          var free = brutoKnown ? bruto - gas : 0;
+          var start = data.saldoInicial !== null ? data.saldoInicial : carry;
+          var balanceInfo = computeBalance(data, day.key, start);
+
+          if (brutoKnown) {
+            totals.gross += bruto;
+            totals.gas += gas;
+            totals.free += free;
+          }
+
+          if (balanceInfo.balance !== null) {
+            carry = balanceInfo.balance;
+            totals.latestBalance = balanceInfo.balance;
+          }
+
+          if (data.status === "concluido") totals.doneDays += 1;
+          if (data.status === "pendente") totals.pendingDays += 1;
+        });
+
+        return totals;
+      }
+
+      function exportBackup() {
+        saveDay(true);
+        var payload = JSON.stringify(state, null, 2);
+        var blob = new Blob([payload], { type: "application/json" });
+        var url = URL.createObjectURL(blob);
+        var link = document.createElement("a");
+        var stamp = new Date().toISOString().slice(0, 10);
+        link.href = url;
+        link.download = "plano-financeiro-01-19-" + stamp + ".json";
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        URL.revokeObjectURL(url);
+        showToast("Backup JSON exportado.");
+      }
+
+      function importBackup() {
+        var file = el.backupInput.files && el.backupInput.files[0];
+        if (!file) return;
+        var reader = new FileReader();
+        reader.onload = function () {
+          try {
+            var imported = normalizeState(JSON.parse(String(reader.result || "{}")));
+            if (!confirm("Importar backup e substituir os dados atuais deste navegador?")) {
+              el.backupInput.value = "";
+              return;
+            }
+            state = imported;
+            currentDayKey = state.selectedDay;
+            persist();
+            renderChecklist();
+            loadDay(currentDayKey);
+            renderAll();
+            showToast("Backup importado.");
+          } catch (error) {
+            alert("Não foi possível importar este JSON.");
+          } finally {
+            el.backupInput.value = "";
+          }
+        };
+        reader.readAsText(file);
+      }
+
+      function clearCurrentDay() {
+        if (!confirm("Limpar somente os dados de " + dayLabel(currentDayKey) + "?")) return;
+        delete state.days[currentDayKey];
+        persist();
+        loadDay(currentDayKey);
+        renderAll();
+        showToast("Dia atual limpo.");
+      }
+
+      function resetAll() {
+        var first = confirm("Resetar tudo remove todos os dias salvos, checklist e backups importados deste navegador. Continuar?");
+        if (!first) return;
+        var second = confirm("Confirma reset total? Esta ação não pode ser desfeita.");
+        if (!second) return;
+        localStorage.removeItem(STORAGE_KEY);
+        state = defaultState();
+        currentDayKey = state.selectedDay;
+        persist();
+        renderChecklist();
+        loadDay(currentDayKey);
+        renderAll();
+        showToast("Tudo foi resetado.");
+      }
+
+      function enterStreetMode() {
+        saveDay(true);
+        document.body.classList.add("street-mode");
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
+      function exitStreetMode() {
+        saveDay(true);
+        document.body.classList.remove("street-mode");
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
+      function copyText(text, successMessage) {
+        if (navigator.clipboard && window.isSecureContext) {
+          navigator.clipboard.writeText(text).then(function () {
+            showToast(successMessage);
+          }).catch(function () {
+            fallbackCopy(text, successMessage);
+          });
+          return;
+        }
+        fallbackCopy(text, successMessage);
+      }
+
+      function fallbackCopy(text, successMessage) {
+        var area = document.createElement("textarea");
+        area.value = text;
+        area.setAttribute("readonly", "");
+        area.style.position = "fixed";
+        area.style.left = "-9999px";
+        document.body.appendChild(area);
+        area.select();
+        try {
+          document.execCommand("copy");
+          showToast(successMessage);
+        } catch (error) {
+          alert(text);
+        }
+        area.remove();
+      }
+
+      function setStorageStatus(text, className) {
+        el.storageStatus.className = "status-badge " + className;
+        el.storageStatus.textContent = text;
+      }
+
+      function showToast(message) {
+        clearTimeout(toastTimer);
+        el.toast.textContent = message;
+        el.toast.classList.add("show");
+        toastTimer = setTimeout(function () {
+          el.toast.classList.remove("show");
+        }, 2200);
+      }
+
+      function parseMoney(value) {
+        if (value === null || value === undefined) return null;
+        var text = String(value).trim();
+        if (!text) return null;
+        text = text.replace(/[^\d,.-]/g, "");
+        if (!text) return null;
+        if (text.indexOf(",") >= 0) {
+          text = text.replace(/\./g, "").replace(",", ".");
+        }
+        var number = Number(text);
+        return Number.isFinite(number) ? number : null;
+      }
+
+      function nullableNumber(value) {
+        var number = toNumber(value);
+        return Number.isFinite(number) ? number : null;
+      }
+
+      function toNumber(value) {
+        if (typeof value === "number") return Number.isFinite(value) ? value : null;
+        return parseMoney(value);
+      }
+
+      function clamp(number, min, max) {
+        return Math.min(Math.max(number, min), max);
+      }
+
+      function inputValue(value) {
+        return value === null || value === undefined ? "" : String(value).replace(".", ",");
+      }
+
+      function formatCurrency(value) {
+        var number = Number(value || 0);
+        return number.toLocaleString("pt-BR", {
+          style: "currency",
+          currency: "BRL"
+        });
+      }
+
+      function optionalCurrency(value) {
+        return value === null || value === undefined ? "Não informado" : formatCurrency(value);
+      }
+
+      function formatPercent(value) {
+        return Math.round(value) + "%";
+      }
+
+      function dayLabel(key) {
+        var found = DAYS.find(function (day) { return day.key === key; });
+        return found ? found.label : "01/06";
+      }
+
+      function nextPaymentText(key) {
+        var index = DAYS.findIndex(function (day) { return day.key === key; });
+        var upcoming = DAYS.slice(Math.max(index, 0)).find(function (day) {
+          return PAYMENTS[day.key];
+        });
+        if (!upcoming) return "Nenhum pagamento previsto até 19/06";
+        return upcoming.label + " — " + PAYMENTS[upcoming.key].text;
+      }
+
+      function isValidDay(key) {
+        return DAYS.some(function (day) { return day.key === key; });
+      }
+
+      function statusLabel(status) {
+        if (status === "concluido") return "Concluído";
+        if (status === "pendente") return "Pendente";
+        return "Aberto";
+      }
+
+      function statusClass(status) {
+        if (status === "concluido") return "status-done";
+        if (status === "pendente") return "status-alert";
+        return "status-close";
+      }
+
+      function escapeHtml(value) {
+        return String(value)
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&#039;");
+      }
+    })();
+  </script>
 </body>
 </html>
